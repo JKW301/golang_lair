@@ -1,5 +1,5 @@
 # golang_lair
-
+`go run main.go`
 ## main_docker.go
 ```
 docker build -t go-docker-example .
