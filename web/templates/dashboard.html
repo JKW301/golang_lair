@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Trading Bot</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4">Bienvenue, {{ .UserEmail }}</h1>
+            <p class="lead">Voici votre tableau de bord personnel.</p>
+        </div>
+
+        <div class="row mt-5">
+            <!-- Section pour les informations -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Vos informations
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Email :</strong> {{ .UserEmail }}</p>
+                        <p><strong>Date d'inscription :</strong> {{ .SignupDate }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section pour les graphiques -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Graphique BTC/USDT
+                    </div>
+                    <div class="card-body">
+                        <canvas id="btcChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Exemple de données pour le graphique
+        const ctx = document.getElementById('btcChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["10:00", "10:05", "10:10", "10:15"], // Exemple d'heures
+                datasets: [{
+                    label: 'BTC/USDT',
+                    data: [45000, 45200, 44800, 46000], // Exemple de prix
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>

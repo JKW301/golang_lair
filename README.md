@@ -1,5 +1,25 @@
 # golang_lair
 `go run main.go`
+
+# Dépendance
+`go mod init web_console` **initialiser un module avant d'installer les dépendances**
+`go install github.com/gin-gonic/gin@latest`
+`go get github.com/gorilla/websocket`
+`go get github.com/pquerna/otp{}`
+`go get -u gorm.io/gorm`
+`go get -u gorm.io/driver/sqlite`
+
+
+##
+**Servir la page html avec GIN**
+```
+r.LoadHTMLGlob("web/templates/*")
+r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.html", nil)
+})
+
+```
+
 ## main_docker.go
 ```
 docker build -t go-docker-example .
